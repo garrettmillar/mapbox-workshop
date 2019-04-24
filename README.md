@@ -201,7 +201,7 @@ map.addLayer({
            },
            'fill-opacity': 0.5
        }
-   }, 'waterway-label');
+   });
 });
 ```
 **Note**: If you don't have your data ready, feel free to use the data links in provided examples to explore how you could apply the same techniques to your own data in the future.
