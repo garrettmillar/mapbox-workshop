@@ -44,7 +44,7 @@ Mapbox provides many tools to build maps into your website or web-based applicat
   * ![Image](img/gh_pages.png)
 * Open terminal/cmd to clone repo to local directory:
   * ```git clone "https://github.com/<'your_user_name_here'>/mapbox-workshop.git"```
-  * ```git cd "https://github.com/<'your_user_name_here'>/mapbox-workshop.git"```
+  * ```git cd mapbox-workshop```
 * Download (or copy & paste into editor) [index.html](index.html) into the newly created file directory (e.g., mapbox-workshop)<!-- ### The Bones of Mapbox [index.html]: -->
   * It should look like:
 ```html
