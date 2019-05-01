@@ -175,7 +175,7 @@ writeOGR(field_data_shp, "field_data_shp",
 layer="field_data_shp", driver="GeoJSON") 
 ```
 
-# Connecting to the Web
+## Connecting to the Web
 Now that you have a workable GeoJSON format of some of your own data:
 1. Upload your data to your Github by:
    * Saving data into local Git directory
@@ -232,7 +232,7 @@ Now that you have a workable GeoJSON format of some of your own data:
                  });
       ```
 
-# Feeling Confident? 
+## Feeling Confident? 
 Below is a **full, standalone example html script** that allows the filtering of your displayed data, based on their defined source and through some simple CSS properties. 
    * **Note**: This script assumes you have multiple data sources to be added as separate map layers, to then later be called on as a ```toggleableLayerIds``` variable. This variable is then sent to the CSS property ```menu``` as an HTML DOM activeElement Property (study the values in bottom of the script below, '```active```' and '```visible```' to get a better understanding if wanted/needed).
    * E.g.,  ```var toggleableLayerIds = [ 'contours', 'museums' ];```
@@ -376,7 +376,7 @@ Below is a **full, standalone example html script** that allows the filtering of
    </html>
    ``` 
 
-# Further Operations
+## Further Operations
 If you've made it this far, I think you've earned some bragging rights. Take a couple seconds to brag about this to your neighbor. Feel free to toss up the ye' old, hand-formed "L" sign on your forehead while doing so. It really helps with the shaming delivery. Use this for some inspiration if needed:
      <img src="img/shame.gif" alt="drawing" style="width:373px;"/>
 
@@ -384,7 +384,7 @@ I hope they really felt the shame.
 
 Now, this is where I leave you. Use your well-earned extra time to continue exploring some Mapbox features you think would be interesting to add to your mapping application.
 
-# Troubleshooting
+## Troubleshooting
 If you run into any troubles, for instance, your data won't show up on the map (* *cough* .. *Laura* .. *cough* *cough* *), and you have already looked into Chrome's or Firefox's Inspector, seeing no outputted errors in the process, 99% chance it is the formatting of your GeoJSON (don't @ me).
    1. First, ensure your GeoJSON is actually in lon/lat format by opening the raw data file and seeing the format of the coordinates property.
       * If you discover it is not, try re-running the Rscript code from earlier, specifically the ```spTransform``` line:
