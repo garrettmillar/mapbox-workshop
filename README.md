@@ -233,10 +233,10 @@ Now that you have a workable GeoJSON format of some of your own data:
       ```
 
 # Feeling Confident? 
-Below is a **full, standalone example html script** that allows the filtering of your displayed data, based on their source and through some simple CSS properties. 
-   * **Note**: This script assumes you have multiple data sources to be added as separate map layers, to then later be called on as a ```toggleableLayerIds``` variable, which is then sent to the CSS property ```menu``` as an HTML DOM activeElement Property (study the values in bottom of script: '```active```' and '```visible```' to get a better understanding if wanted/needed).
+Below is a **full, standalone example html script** that allows the filtering of your displayed data, based on their defined source and through some simple CSS properties. 
+   * **Note**: This script assumes you have multiple data sources to be added as separate map layers, to then later be called on as a ```toggleableLayerIds``` variable. This variable is then sent to the CSS property ```menu``` as an HTML DOM activeElement Property (study the values in bottom of the script below, '```active```' and '```visible```' to get a better understanding if wanted/needed).
    * E.g.,  ```var toggleableLayerIds = [ 'contours', 'museums' ];```
-<!-- #### Show & hide layers -->
+
    ```html
    <!DOCTYPE html>
    <html>
@@ -375,19 +375,31 @@ Below is a **full, standalone example html script** that allows the filtering of
       </body>
    </html>
    ``` 
-# Troubleshooting
-If you run into any troubles, for instance, your data won't show up on the map, and you have already looked into Chrome's or Firefox's Inspector, seeing no outputted errors in the process, 99% chance it is the formatting of your GeoJSON.
-   1. First, ensure your GeoJSON is actually in lon/lat format by opening the raw data file and seeing the format of the coordinates property.
-   2. If the coordinates check out, go to [GeoJSON.io](http://GeoJSON.io) and copy and paste your GeoJSON values (or open as file if it is a lot of data). **IF** it is in the correct format, meaning there are no leading white-spaces, strangely placed brackets or commas, etc. etc. (I know the GeoJSON is very sensitive--whisper sweet nothings into its ear while copying and pasting for extra troubleshooting ability), then you should see it quickly displayed on the map to the left. Something is probably wrong IF: (1) the map is blank; or (2) your data is "displayed" (you may see a coulpe vector points, and if you're lucky an entire raster), but seems to be hosted on a blank map with no surrounding geographic features shown.
 
-      <img src="img/GeoJSON.io.png" alt="drawing" style="width:673px;"/>
-   * If all else fails, my last recommendation would be looking into 
-   * [GeoJSON Utilities](https://jasonheppler.org/courses/csu-workshop/GeoJSON-utilities.html), some cmd/terminal utilities "that make things easier". Sorry, you're on your own at this point. If these options didn't help and you're feeling utterly helpless, welcome to the club ;D .
+# Further Operations
+If you've made it this far, I think you've earned some bragging rights. Take a couple seconds to brag about this to your neighbor. Feel free to toss up the ye' old, hand-formed "L" sign on your forehead while doing so. It really helps with the shaming delivery. Use this for some inspiration if needed:
+     <img src="img/shame.gif" alt="drawing" style="width:373px;"/>
+
+I hope they really felt the shame. 
+
+Now, this is where I leave you. Use your well-earned extra time to continue exploring some Mapbox features you think would be interesting to add to your mapping application.
+
+# Troubleshooting
+If you run into any troubles, for instance, your data won't show up on the map (* *cough* .. *Laura* .. *cough* *cough* *), and you have already looked into Chrome's or Firefox's Inspector, seeing no outputted errors in the process, 99% chance it is the formatting of your GeoJSON (don't @ me).
+   1. First, ensure your GeoJSON is actually in lon/lat format by opening the raw data file and seeing the format of the coordinates property.
+      * If you discover it is not, try re-running the Rscript code from earlier, specifically the ```spTransform``` line:
+        ```r 
+        FL_mask_vect_latlon <- spTransform(FL_mask_vect, CRS("+proj=longlat +datum=WGS84"))
+        ```
+   2. If the coordinates check out, go to [GeoJSON.io](http://GeoJSON.io) and copy and paste your GeoJSON values (or open as file if it is a lot of data). **IF** it is in the correct format, meaning there are no leading white-spaces, strangely placed brackets or commas, etc. etc. (I know the GeoJSON is very sensitive--whisper sweet nothings into its ear while copying and pasting for extra troubleshooting ability), then you should see it quickly displayed on the map to the left. Something is probably wrong IF: (1) the map is blank; or (2) your data is "displayed" (you may see a coulpe vector points, or if you're lucky an entire raster), but seems to be hosted on a blank map with no surrounding geographic features shown.
+      * Example of what it *should* look like:
+       <img src="img/GeoJSON.io.png" alt="drawing" style="width:673px;"/>
+   * If all else fails, my last recommendation would be looking into [GeoJSON Utilities](https://jasonheppler.org/courses/csu-workshop/GeoJSON-utilities.html), some cmd/terminal utilities "that make things easier". Sorry, you're on your own at this point. If these options didn't help and you're feeling utterly helpless, welcome to the club ;D.
 
 # *FIN*
 Congratulations!!!
 
-You made it through the workshop! Well I don't actually know that. You could have failed miserably. Either way, I thought you could use some encouragement:
+You made it through the workshop! Well I don't actually know that. You could have failed miserably and are just looking down here for some magical cure-all help (**HTTP 404 Not Found Error**: The requested help was not found in this workshop). Either way, I thought you could use some encouragement:
 
 <img src="img/ms-3lpZDV.gif" alt="drawing" style="width:373px;"/>
 
