@@ -138,12 +138,12 @@ While we're waiting for our changes to be published online, let's look at a few 
 ## Making Mapbox Useful
 Its all about the GeoJSON now. In R Studio, load either some raster or vector data you've recently been working with. The two code chunks below demonstrate how you can take either data format and easily convert them to GeoJSON using R. 
 
-The most important part about the below Rscript comes in the form of:
+But first, I wanted to inform you of the most important part about the below Rscript, which is:
 ```r
 # Ensure coordinates are in lat/lon
 FL_mask_vect_latlon <- spTransform(FL_mask_vect, CRS("+proj=longlat +datum=WGS84"))
 ```
-This specifically e**nsures that the coordinates being registered to your GeoJSON (most importantly once exported) are in lat/lon format, which Mapbox requires**. If this feels like a sin to do to your data, preach it to the choir. I suppose there is a chance of a setting or parameter being available to circumvent the necessity. However, I have yet to come across such a feature. 
+This specifically **ensures that the coordinates being registered to your GeoJSON (most importantly once exported) are in lat/lon format, *which Mapbox requires***. If this feels like a sin to do to your data, preach it to the choir. I suppose there is a chance of a setting or parameter being available to circumvent the necessity. However, I have yet to come across such a feature. 
 
 ### Data Processing, Converting, & Exporting
 <!-- #### Coordinates -->
