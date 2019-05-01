@@ -94,7 +94,8 @@ Mapbox provides many tools to build maps into your website or web-based applicat
 * **Insert your own token ID**
 * Save file
 * Now let's see what it looks like on the web with a quick double click:
-<img src="img/initial_index_open.gif" alt="drawing" style="width:600px;"/>
+  
+  <img src="img/initial_index_open.gif" alt="drawing" style="width:600px;"/>
 
 * Return to your terminal/cmd window
 * Check on the directory's status with: ```git status```
