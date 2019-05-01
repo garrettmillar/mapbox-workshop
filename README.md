@@ -184,7 +184,7 @@ Now that you have a workable GeoJSON format of some of your own data:
      * ```git commit -m "upload data"```
      * ```git push```
 2. Once changes have been published, go to your online repository and retrieve the online link to your fresh, hot-off-the-plate GeoJSON:
-   * Example: ```"https://raw.githubusercontent.com/mmamanat/gis741/master/rasters/jesup_vect"```
+   * Example: ```'https://raw.githubusercontent.com/mmamanat/gis714/master/rasters/do_rast1'```
 3. Now, lets see what you're really made of. Try to customize the original index.html with a Mapbox feature of choice
    1. But first, make sure you change the preset coordinates to the location of your data. Note that this doesn't have to be spot on, just some coordinates that at least allow you to see your data. You can always adjust them at a later time (for an entire hour, decimal point by decimal point.. do as I say, not as I do):
       *  ```center: [-81.2023, 28.7302], // starting position```
@@ -233,7 +233,7 @@ Now that you have a workable GeoJSON format of some of your own data:
       ```
 
 ## Feeling Confident? 
-Below is a **full, standalone example html script** that allows the filtering of your displayed data, based on their defined source and through some simple CSS properties. 
+Below is a **full, standalone example html script** that allows the filtering of your displayed data, based on their defined source and through some simple CSS properties. See if you can use it as a guide to create a toggable menu that allows you to switch between displayed data in your mapping application.
    * **Note**: This script assumes you have multiple data sources to be added as separate map layers, to then later be called on as a ```toggleableLayerIds``` variable. This variable is then sent to the CSS property ```menu``` as an HTML DOM activeElement Property (study the values in bottom of the script below, '```active```' and '```visible```' to get a better understanding if wanted/needed).
    * E.g.,  ```var toggleableLayerIds = [ 'contours', 'museums' ];```
 
