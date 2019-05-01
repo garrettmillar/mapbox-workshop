@@ -41,48 +41,49 @@ Mapbox provides many tools to build maps into your website or web-based applicat
 * Create new repo on Github
   * Example: mapbox-workshop
 * Go to the repo settings tab and set the Github Pages source to the master branch:
+
   * ![Image](img/gh_pages.png)
 * Open terminal/cmd to clone repo to local directory:
   * ```git clone "https://github.com/<'your_user_name_here'>/mapbox-workshop.git"```
   * ```git cd mapbox-workshop```
 * Download (or copy & paste into editor) [index.html](index.html) into the newly created file directory (e.g., mapbox-workshop)<!-- ### The Bones of Mapbox [index.html]: -->
   * It should look like:
-```html
-<!DOCTYPE html>
-<html>
-   <head>
-      <meta charset='utf-8' />
-      <title>Mapbox GL Workshop</title>
-      <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-      <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.1/mapbox-gl.js'></script>
-      <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.1/mapbox-gl.css' rel='stylesheet' />
-      <style>
-         body { margin:0; padding:0; }
-         #map { position:absolute; top:0; bottom:0; width:100%; }
-      </style>
-   </head>
-   <body>
-      <div id='map'></div>
-      <script>
-         mapboxgl.accessToken = '<YOUR_TOKEN_KEY_HERE_PLS>'; // don't keep '<' & '>' when pasting token
-         
-         var map = new mapboxgl.Map({
-         container: 'map', // container id
-         style: 'mapbox://styles/mapbox/streets-v10', //hosted style id;  
-         //others: 
-         //	'mapbox://styles/mapbox/light-v10'
-         //	'mapbox://styles/mapbox/streets-v10' 
-         //	'mapbox://styles/mapbox/dark-v10'
-         //	'mapbox://styles/mapbox/outdoors-v10'  
-         //	'mapbox://styles/mapbox/satellite-v10' 
-         //	'mapbox://styles/mapbox/traffic-night-v2'
-         center: [-78.6382, 35.7796], // change starting position to coordinates associated w/ your data.
-         zoom: 6 // starting zoom
-         });
-      </script>
-   </body>
-</html>
-```
+    ```html
+    <!DOCTYPE html>
+    <html>
+       <head>
+          <meta charset='utf-8' />
+          <title>Mapbox GL Workshop</title>
+          <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+          <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.1/mapbox-gl.js'></script>
+          <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.1/mapbox-gl.css' rel='stylesheet' />
+          <style>
+             body { margin:0; padding:0; }
+             #map { position:absolute; top:0; bottom:0; width:100%; }
+          </style>
+       </head>
+       <body>
+          <div id='map'></div>
+          <script>
+             mapboxgl.accessToken = '<YOUR_TOKEN_KEY_HERE_PLS>'; // don't keep '<' & '>' when pasting token
+             
+             var map = new mapboxgl.Map({
+             container: 'map', // container id
+             style: 'mapbox://styles/mapbox/streets-v10', //hosted style id;  
+             //others: 
+             //	'mapbox://styles/mapbox/light-v10'
+             //	'mapbox://styles/mapbox/streets-v10' 
+             //	'mapbox://styles/mapbox/dark-v10'
+             //	'mapbox://styles/mapbox/outdoors-v10'  
+             //	'mapbox://styles/mapbox/satellite-v10' 
+             //	'mapbox://styles/mapbox/traffic-night-v2'
+             center: [-78.6382, 35.7796], // change starting position to coordinates associated w/ your data.
+             zoom: 6 // starting zoom
+             });
+          </script>
+       </body>
+    </html>
+    ```
 
 ### Publishing to Web
 * First, open html content in your text editor of choice and do an overall inspection of its structure:
@@ -135,9 +136,17 @@ While we're waiting for our changes to be published online, let's look at a few 
 
 ## Making Mapbox Useful
 Its all about the geojson now. In R Studio, load either some raster or vector data you've recently been working with. The two code chunks below demonstrate how you can take either data format and easily convert them to geojson using R. 
-<!-- ### Data Types -->
+
+The most important part about the below Rscript comes in the form of:
+```r
+# Ensure coordinates are in lat/lon
+FL_mask_vect_latlon <- spTransform(FL_mask_vect, CRS("+proj=longlat +datum=WGS84"))
+```
+This specifically e**nsures that the coordinates being registered to your geojson (most importantly once exported) are in lat/lon format, which Mapbox requires**. If this feels like a sin to do to your data, preach it to the choir. I suppose there is a chance of a setting or parameter being available to circumvent the necessity. However, I have yet to come across such a feature. 
+
+### Data Processing, Converting, & Exporting
 <!-- #### Coordinates -->
-#### Raster
+#### Raster 
 ```r
 # Load raster
 FL_mask_rast <- raster("FL_2017_data_mask.tif")
@@ -165,6 +174,7 @@ writeOGR(field_data_shp, "field_data_shp",
 layer="field_data_shp", driver="GeoJSON") 
 ```
 
+# Connecting to the Web
 Now that you have a workable geojson format of some of your own data:
 1. Upload your data to your Github by:
    * Saving data into local Git directory
@@ -172,39 +182,55 @@ Now that you have a workable geojson format of some of your own data:
      * ```git add . ```
      * ```git commit -m "upload data"```
      * ```git push```
-2. Retrieve online data link 
+2. Once changes have been published, go to your online repository and retrieve the online link to your fresh, hot-off-the-plate Geojson:
    * Example: ```"https://raw.githubusercontent.com/mmamanat/gis741/master/rasters/jesup_vect"```
-3. Customize the original index.html with a Mapbox feature of choice
-   1. Change coordinates according to the location of your data:
+3. Now, lets see what you're really made of. Try to customize the original index.html with a Mapbox feature of choice
+   1. But first, make sure you change the preset coordinates to the location of your data. Note that this doesn't have to be spot on, just some coordinates that at least allow you to see your data. You can always adjust them at a later time (for an entire hour, decimal point by decimal point.. do as I say, not as I do):
       *  ```center: [-81.2023, 28.7302], // starting position```
-   2. In index.html, use the following code chunk (should be inserted after initialization of Mapbox map) as guide to adding your own data to your map.
-```html
-map.on('load', function() {
+4. Finally, in index.html, use the following code chunk (should be inserted after initialization of Mapbox map) as guide to adding your own data to your map.
+   * **Note**: If you don't have your data ready, feel free to use the data links in provided example below to explore how you could apply the same techniques to your own data in the future. However, the data does not correspond to the initial map location (in index.html; North Carolina). The data links below pertain to collected field data on Cyanobacteria (Blue-green algae) blooms in Florida. No one tell Megan, but it was the simplest data I could think of to use as an example.
+   * **Note 2**: The coordinates corresponding to the example data is the same as the coordinate example given above ```[-81.2023, 28.7302]```.
+   * **Note 3**: 
+5. If you're feeling fancy, take a look into your own exported Geojson file, and find the property value you're mainly interested in visualizing/coloring in your map display (it doesn't *always* have to be just one property, but lets keep it simple for now). An example of what this would look like in the Geojson, say if I'm interested in coloring the example raster data (```do_rast1``` in the Geojson file below), it would look like: 
+   <img src="img/geojson_prop_value_ident.png" alt="drawing" style="width:673px;"/>
+6. Now, fly away little bird. Use the html code below (which is **NOT** a standalone script, it is only intended to be used for examples on how to add/apply the functions:  ```map.addSource({})``` and ```map.addLayer({})```) to edit your pre-existing html script.
+7. Let's see if you can use them to add and colorize your data of interest:
+      ```html
+          <!DOCTYPE html>
+          <html>
+                <script>
+                  //  # Add source of data (you will run into the least amount of problems when adding source as online link --> View 'Raw' data file on Github --> Copy link)
+                    map.addSource('do_rast1', {
+                        type: 'geojson',
+                        data: 'https://raw.githubusercontent.com/mmamanat/gis714/master/rasters/do_rast1'
+                    });
+                    //  # -- Add source of data as map layer -- #
+                    // # Continuing with the same example data, we can find out what the property value of interests' range / interquartile ranges are (recommended to do in R considering it should still be loaded in your environment)
+                    // # we then take the data values (I've found 5 values tend to be sufficient for some straightforward color mapping), and associate them with HEX color codes (e.g., #fff = white) by adding "stops". Done like below:
+                    map.addLayer({
+                     'id': 'do_rast1',
+                     "type": "fill",
+                     "source": "do_rast1",
+                     'layout': {},
+                     'paint': {
+                         'fill-color': {
+                           property: 'do_rast1',
+                           type: 'exponential',
+                           stops: [
+                           [8.312620, '#edf8fb'],
+                           [8.656304, '#b2e2e2'],
+                           [8.7, '#66c2a4'],
+                           [8.9, '#2ca25f'],
+                           [9.119719, '#006d2c']
+                           ],
+                         },
+                         'fill-opacity': 0.2
+                     }
+                 });
+      ```
 
-   map.addSource('jesup_mask', {
-       type: 'geojson',
-       data: 'https://raw.githubusercontent.com/mmamanat/gis741/master/rasters/jesup_vect'
-   });
-
-map.addLayer({
-       'id': 'jesup mask',
-       "type": "fill",
-       "source": "jesup_mask",
-       'layout': {},
-       'paint': {
-           'fill-color': {
-             property: 'value',
-             type: 'exponential',
-             stops: [
-             [1, '#FFEC2A']
-             ],
-           },
-           'fill-opacity': 0.5
-       }
-   });
-});
-```
-**Note**: If you don't have your data ready, feel free to use the data links in provided examples to explore how you could apply the same techniques to your own data in the future.
+# Feeling Confident? 
+Below is some sample code that will allow you to filter based on 
 
 <!-- #### Show & hide layers
 ```html
