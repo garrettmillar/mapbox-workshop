@@ -205,7 +205,7 @@ Now that you have a workable GeoJSON format of some of your own data:
                   //  # Add source of data (you will run into the least amount of problems when 
                   // adding source as online link --> View 'Raw' data file on Github --> Copy link)
                     map.addSource('do_rast1', {
-                        type: 'GeoJSON',
+                        type: 'geojson',
                         data: 'https://raw.githubusercontent.com/mmamanat/gis714/master/rasters/do_rast1'
                     });
                     //  # -- Add source of data as map layer -- #
