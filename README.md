@@ -401,7 +401,7 @@ Congratulations!!!
 
 You made it through the workshop! Well I don't actually know that. You could have failed miserably and are just looking down here for some magical cure-all help (**HTTP 404 Not Found Error**: The requested help was not found in this workshop). Either way, I thought you could use some encouragement:
 
-<img src="img/ms-3lpZDV.gif" alt="drawing" style="width:373px;"/>
+<img src="img/point.gif" alt="drawing" style="width:373px;"/>
 
 <!-- ### Example Code
 #### Adding polygons
