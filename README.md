@@ -194,7 +194,7 @@ Now that you have a workable GeoJSON format of some of your own data:
    <!-- * **Note 3**:  -->
 5. If you're feeling fancy, take a look into your own exported GeoJSON file, and find the property value you're mainly interested in visualizing/coloring in your map display (it doesn't *always* have to be just one property, but lets keep it simple for now). An example of what this would look like in the GeoJSON, say if I'm interested in coloring the example raster data (```do_rast1``` in the GeoJSON file below), it would look like: 
 
-   <img src="img/GeoJSON_prop_value_ident.png" alt="drawing" style="width:673px;"/>
+   <img src="img/geojson_prop_value_ident.png" alt="drawing" style="width:673px;"/>
 6. Now, fly away little bird. Use the html code below (which is **NOT** a standalone script, it is only intended to be used for examples on how to add/apply the functions:   ```map.addSource({})``` and ```map.addLayer({})``` ) to edit your pre-existing html script.
 7. Let's see if you can use them to add and colorize your data of interest:
 
@@ -393,7 +393,7 @@ If you run into any troubles, for instance, your data won't show up on the map (
         ```
    2. If the coordinates check out, go to [GeoJSON.io](http://GeoJSON.io) and copy and paste your GeoJSON values (or open as file if it is a lot of data). **IF** it is in the correct format, meaning there are no leading white-spaces, strangely placed brackets or commas, etc. etc. (I know the GeoJSON is very sensitive--whisper sweet nothings into its ear while copying and pasting for extra troubleshooting ability), then you should see it quickly displayed on the map to the left. Something is probably wrong IF: (1) the map is blank; or (2) your data is "displayed" (you may see a coulpe vector points, or if you're lucky an entire raster), but seems to be hosted on a blank map with no surrounding geographic features shown.
       * Example of what it *should* look like:
-       <img src="img/GeoJSON.io.png" alt="drawing" style="width:673px;"/>
+       <img src="img/geojson.io.png" alt="drawing" style="width:673px;"/>
    * If all else fails, my last recommendation would be looking into [GeoJSON Utilities](https://jasonheppler.org/courses/csu-workshop/GeoJSON-utilities.html), some cmd/terminal utilities "that make things easier". Sorry, you're on your own at this point. If these options didn't help and you're feeling utterly helpless, welcome to the club ;D.
 
 # *FIN*
